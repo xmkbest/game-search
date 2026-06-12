@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Game Search</title>
+
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      max-width: 650px;
+      margin: 60px auto;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 12px 18px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .links {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .links a {
+      display: block;
+      padding: 10px;
+      margin: 6px 0;
+      background: #f2f2f2;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #000;
+    }
+
+    .links a:hover {
+      background: #e6e6e6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Game Search</h2>
+
+  <input id="game" placeholder="Enter game title..." />
+  <button onclick="generateLinks()">Generate search links</button>
+
+  <div class="links" id="links"></div>
+
+  <script>
+    const stores = [
+      {
+        name: "Empik",
+        url: (q) => `https://www.empik.com/szukaj/produkt?q=${q}`
+      },
+      {
+        name: "Media Markt",
+        url: (q) => `https://www.mediamarkt.pl/pl/search.html?query=${q}`
+      },
+      {
+        name: "Allegro",
+        url: (q) => `https://allegro.pl/listing?string=${q}`
+      },
+      {
+        name: "Ultima",
+        url: (q) => `https://www.ultima.pl/search/?keywords=${q}`
+      },
+      {
+        name: "Perfect Blue",
+        url: (q) => `https://perfectblue.pl/?s=${q}&post_type=product`
+      },
+      {
+        name: "X-Kom",
+        url: (q) => `https://www.x-kom.pl/szukaj?q=${q}`
+      },
+      {
+        name: "Media Expert",
+        url: (q) =>
+          `https://www.mediaexpert.pl/search?query[menu_item]=&query[querystring]=${q}`
+      },
+      {
+        name: "RTV Euro AGD",
+        url: (q) =>
+          `https://www.euro.com.pl/search.bhtml?keyword=${q}`
+      }
+    ];
+
+    function generateLinks() {
+      const game = document.getElementById("game").value.trim();
+      if (!game) return;
+
+      const encoded = encodeURIComponent(game);
+      const container = document.getElementById("links");
+
+      container.innerHTML = "";
+
+      stores.forEach(store => {
+        const url = store.url(encoded);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.target = "_blank";
+        a.textContent = "Search on " + store.name;
+
+        container.appendChild(a);
+      });
+    }
+
+    document.getElementById("game").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") generateLinks();
+    });
+  </script>
+
+</body>
+</html>
