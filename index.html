@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Game Search</title>
+  <title>Wyszukaj gierkę</title>
 
   <style>
     body {
@@ -50,10 +50,10 @@
 
 <body>
 
-  <h2>Game Search</h2>
+  <h2>Wyszukaj gierkę</h2>
 
-  <input id="game" placeholder="Enter game title..." />
-  <button onclick="generateLinks()">Generate search links</button>
+  <input id="game" placeholder="Podaj tytuł gry..." />
+  <button onclick="generateLinks()">Wygeneruj linki do sklepów</button>
 
   <div class="links" id="links"></div>
 
@@ -110,7 +110,7 @@
         const a = document.createElement("a");
         a.href = url;
         a.target = "_blank";
-        a.textContent = "Search on " + store.name;
+        a.textContent = "" + store.name;
 
         container.appendChild(a);
       });
