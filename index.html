@@ -2,14 +2,32 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Wyszukaj gierkę</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+    }
+
     body {
       font-family: -apple-system, sans-serif;
-      max-width: 650px;
-      margin: 60px auto;
+      min-height: 100svh;
+      margin: 0;
+      padding: 32px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+    }
+
+    main {
+      width: 100%;
+      max-width: 650px;
     }
 
     input {
@@ -17,7 +35,6 @@
       padding: 12px;
       font-size: 16px;
       margin-bottom: 12px;
-      box-sizing: border-box;
     }
 
     button {
@@ -45,17 +62,34 @@
     .links a:hover {
       background: #e6e6e6;
     }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 24px 16px;
+      }
+
+      h2 {
+        font-size: 24px;
+        margin-top: 0;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <main>
 
-  <h2>Wyszukaj gierkę</h2>
+    <h2>Wyszukaj gierkę</h2>
 
-  <input id="game" placeholder="Podaj tytuł gry..." />
-  <button onclick="generateLinks()">Wygeneruj linki do sklepów</button>
+    <input id="game" placeholder="Podaj tytuł gry..." />
+    <button onclick="generateLinks()">Wygeneruj linki do sklepów</button>
 
-  <div class="links" id="links"></div>
+    <div class="links" id="links"></div>
+  </main>
 
   <script>
     const stores = [
